@@ -1,17 +1,12 @@
 import React from "react";
-import {
-  RiThumbUpFill,
-  RiThumbUpLine,
-  RiDeleteBin6Line,
-  RiEdit2Line,
-} from "react-icons/ri";
+import { RiThumbUpFill, RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../actions/posts";
 import moment from "moment";
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post, adminSignIn }) => {
   const dispatch = useDispatch();
-  console.log(post);
+
   return (
     <div className="card w-full glass">
       {post.selectedFile ? (
@@ -44,24 +39,33 @@ const Post = ({ post, setCurrentId }) => {
           <></>
         )}
         <div className="card-actions flex flex-row justify-between mt-2">
-          <div className="">
-            <button
-              className="btn btn-primary no-animation px-2 md:px-3"
-              onClick={() => dispatch(likePost(post._id))}
-            >
-              <RiThumbUpFill className="text-base md:text-lg" />
-              &nbsp;&nbsp;
-              <div className="text-sm md:text-base">{post.likes}</div>
-            </button>
-          </div>
-          <div>
-            <button
-              className="btn btn-error px-2 sm:px-3 no-animation"
-              onClick={() => dispatch(deletePost(post._id))}
-            >
-              <RiDeleteBin6Line className="text-base md:text-lg" />
-            </button>
-          </div>
+          {!adminSignIn ? (
+            <div className="">
+              <button
+                className="btn btn-primary no-animation px-2 md:px-3"
+                onClick={() => dispatch(likePost(post._id))}
+              >
+                <RiThumbUpFill className="text-base md:text-lg" />
+                &nbsp;&nbsp;
+                <div className="text-sm md:text-base">{post.likes}</div>
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {adminSignIn ? (
+            <div>
+              <button
+                className="btn btn-error px-2 sm:px-3 no-animation"
+                onClick={() => dispatch(deletePost(post._id))}
+              >
+                <RiDeleteBin6Line className="text-base md:text-lg" />
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

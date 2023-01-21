@@ -27,7 +27,7 @@ const Loading = () => (
 );
 
 // Set the current id
-const Posts = ({ setCurrentId }) => {
+const Posts = ({ setCurrentId, adminSignIn }) => {
   const posts = useSelector((state) => state.posts);
 
   const { width } = useWindowDimensions();
@@ -37,7 +37,6 @@ const Posts = ({ setCurrentId }) => {
     () => ({
       columns: nc,
       margin: 4,
-
     }),
     [nc]
   );
@@ -46,7 +45,11 @@ const Posts = ({ setCurrentId }) => {
       <Masonry options={options}>
         {posts.map((post) => (
           <div key={post._id}>
-            <Post post={post} setCurrentId={setCurrentId} />
+            <Post
+              post={post}
+              setCurrentId={setCurrentId}
+              adminSignIn={adminSignIn}
+            />
           </div>
         ))}
       </Masonry>

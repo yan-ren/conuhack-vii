@@ -6,9 +6,12 @@ import Posts from "./components/Posts/Posts";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { getPosts, getPostsBySearch } from "./actions/posts";
+import SignIn from "./components/SignIn/SignIn";
 
 function App() {
   const [search, setSearch] = useState("");
+  const [showForm, setShowForm] = useState(true);
+  const [adminSignIn, setAdminSignIn] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -33,14 +36,26 @@ function App() {
         search={search}
         setSearch={setSearch}
         handleSearchSubmit={handleSearchSubmit}
+        setShowForm={setShowForm}
+        adminSignIn={adminSignIn}
+        setAdminSignIn={setAdminSignIn}
       />
+
+      {showForm ? (
+        <SignIn
+          setShowForm={setShowForm}
+          setAdminSignIn={setAdminSignIn}
+        ></SignIn>
+      ) : (
+        <></>
+      )}
       <div className="container mx-auto pt-8">
         <div className="flex justify-center">
-          <Form/>
+          <Form />
         </div>
 
         <div className="mx-auto px-2 sm:px-5">
-          <Posts/>
+          <Posts adminSignIn={adminSignIn} />
         </div>
       </div>
     </div>
