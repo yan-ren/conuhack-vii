@@ -11,7 +11,7 @@ import moment from "moment";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
-
+  console.log(post);
   return (
     <div className="card w-full glass">
       {post.selectedFile ? (
@@ -50,9 +50,8 @@ const Post = ({ post, setCurrentId }) => {
               onClick={() => dispatch(likePost(post._id))}
             >
               <RiThumbUpFill className="text-base md:text-lg" />
-              {/* <RiThumbUpLine className="text-base md:text-lg" /> */}
               &nbsp;&nbsp;
-              <div className="text-sm md:text-base">{post.likes.length}</div>
+              <div className="text-sm md:text-base">{post.likes}</div>
             </button>
           </div>
           <div>
