@@ -10,6 +10,8 @@ export const getPosts = async (req, res) => {
   }
 };
 
+//test
+
 // QUERY -> /posts?page=1 -> page = 1
 // PARAMS -> /posts/:id or /posts/123 -> id = 123
 export const getPostsBySearch = async (req, res) => {
