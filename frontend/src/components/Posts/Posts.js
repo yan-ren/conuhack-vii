@@ -129,6 +129,20 @@ const Posts = ({ setCurrentId, adminSignIn }) => {
 
   return (
     <div>
+ {/* {adminSignIn ? (
+            <div>
+              <button
+                className="btn btn-error px-2 sm:px-3 no-animation"
+                onClick={() => dispatch(deletePost(post._id))}
+              >
+                <RiDeleteBin6Line className="text-base md:text-lg" />
+              </button>
+            </div>
+          ) : (
+            <></>
+          )} */}
+
+
       {adminSignIn && <PolarArea data={chartData} />}
       {adminSignIn && <Bar options={options} data={data} />}
       <div className="text-2xl font-bold mb-4">Posts</div>
