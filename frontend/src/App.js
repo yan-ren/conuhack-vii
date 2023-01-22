@@ -7,11 +7,12 @@ import { trackerPython } from "./actions/report";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { getPosts, getPostsBySearch } from "./actions/posts";
+import { getReports } from "./actions/reports";
 import SignIn from "./components/SignIn/SignIn";
 
 function App() {
   const [search, setSearch] = useState("");
-  const [showForm, setShowForm] = useState(true);
+  const [showLogin, setShowLogin] = useState(true);
   const [adminSignIn, setAdminSignIn] = useState(false);
 
   const dispatch = useDispatch();
@@ -19,6 +20,10 @@ function App() {
   // as soon as currentId is updated (submit/clear form), the app is going to dispatch getPosts action
   useEffect(() => {
     dispatch(getPosts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getReports());
   }, [dispatch]);
 
   const handleSearchSubmit = (e) => {
@@ -37,18 +42,16 @@ function App() {
         search={search}
         setSearch={setSearch}
         handleSearchSubmit={handleSearchSubmit}
-        setShowForm={setShowForm}
+        setShowLogin={setShowLogin}
         adminSignIn={adminSignIn}
         setAdminSignIn={setAdminSignIn}
       />
 
-      {showForm ? (
+      {showLogin && (
         <SignIn
-          setShowForm={setShowForm}
+          setShowLogin={setShowLogin}
           setAdminSignIn={setAdminSignIn}
         ></SignIn>
-      ) : (
-        <></>
       )}
       <button  type="button"
           className="btn btn-primary px-4 sm:px-6 min-h-0 h-10 mb-4"
