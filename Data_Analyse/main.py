@@ -1,8 +1,9 @@
 import sys
 from Data_Preprocess import *
 
-if __name__ == '__main__':
-    period = sys.argv[1]
-    info = Information(period)
-    info.update_db()
 
+period = sys.argv[1]
+period = float(period)
+info = Information(period)
+info.update_db()
+print('finish')

@@ -1,11 +1,13 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../actions/posts";
+import { trackerPython } from "../../actions/report";
+
 import { useDropzone } from "react-dropzone";
 import Resizer from "react-image-file-resizer";
 
 // Get the current id
-const Form = () => {
+const Form = ({ adminSignIn }) => {
   const [showForm, setShowForm] = useState(false);
 
   const [postData, setPostData] = useState({
@@ -118,15 +120,26 @@ const Form = () => {
         <div className="text-base flex justify-center mb-4">
           Share something with the team!
         </div>
-        <button
-          type="button"
-          className="btn btn-primary px-4 sm:px-6 min-h-0 h-10 mb-4"
-          onClick={() => {
-            setShowForm(true);
-          }}
-        >
-          Create New Post
-        </button>
+        {adminSignIn && (
+          <button
+            type="button"
+            className="btn btn-primary px-4 sm:px-6 min-h-0 h-10 mb-4"
+            onClick={() => dispatch(trackerPython())}
+          >
+            AI Tracker Report
+          </button>
+        )}
+        {!adminSignIn && (
+          <button
+            type="button"
+            className="btn btn-primary px-4 sm:px-6 min-h-0 h-10 mb-4"
+            onClick={() => {
+              setShowForm(true);
+            }}
+          >
+            Create New Post
+          </button>
+        )}
       </div>
 
       {showForm && (

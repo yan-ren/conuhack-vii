@@ -90,11 +90,11 @@ const Posts = ({ setCurrentId, adminSignIn }) => {
   };
 
   const data = {
-    labels: ["1", "2", "3", "4", "5"],
+    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
     datasets: [
       {
         label: "Rating",
-        data: [1, 6, 3, 5, 2],
+        data: [1, 6, 3, 5, 2, 10, 8, 12, 5, 8],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
@@ -129,6 +129,19 @@ const Posts = ({ setCurrentId, adminSignIn }) => {
 
   return (
     <div>
+      {/* {adminSignIn ? (
+            <div>
+              <button
+                className="btn btn-error px-2 sm:px-3 no-animation"
+                onClick={() => dispatch(deletePost(post._id))}
+              >
+                <RiDeleteBin6Line className="text-base md:text-lg" />
+              </button>
+            </div>
+          ) : (
+            <></>
+          )} */}
+
       {adminSignIn && <PolarArea data={chartData} />}
       {adminSignIn && <Bar options={options} data={data} />}
       <div className="text-2xl font-bold mb-4">Posts</div>

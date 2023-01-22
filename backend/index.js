@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 
 import postRoutes from "./routes/posts.js";
 import reportRoutes from "./routes/reports.js";
+import trackerPythonRoutes from "./routes/tracker.js";
 
 const app = express();
 dotenv.config();
@@ -17,7 +18,11 @@ app.use(cors());
 
 // localhost:3001/posts
 app.use("/posts", postRoutes);
+
+app.use("/getTracker", trackerPythonRoutes);
+
 app.use("/reports", reportRoutes);
+
 
 const PORT = process.env.PORT || 3002;
 

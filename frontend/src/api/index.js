@@ -12,4 +12,7 @@ export const updatePost = (id, updatedPost) =>
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 
+export const trackerPython = () => API.get("/getTracker");
+
 export const fetchReports = () => API.get("/reports");
+

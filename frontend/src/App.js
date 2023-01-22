@@ -54,9 +54,8 @@ function App() {
       )}
       <div className="container mx-auto pt-8">
         <div className="flex justify-center">
-          <Form />
+          <Form adminSignIn={adminSignIn} />
         </div>
-
         <div className="mx-auto px-2 sm:px-5">
           <Posts adminSignIn={adminSignIn} />
         </div>
