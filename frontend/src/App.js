@@ -2,6 +2,7 @@ import "./App.css";
 import Form from "./components/Form/Form";
 import Navbar from "./components/Navbar/Navbar";
 import Posts from "./components/Posts/Posts";
+import { trackerPython } from "./actions/report";
 
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
@@ -49,6 +50,10 @@ function App() {
       ) : (
         <></>
       )}
+      <button  type="button"
+          className="btn btn-primary px-4 sm:px-6 min-h-0 h-10 mb-4"
+       onClick={() => dispatch(trackerPython())}
+      >AI Tracker Report</button>
       <div className="container mx-auto pt-8">
         <div className="flex justify-center">
           <Form />
