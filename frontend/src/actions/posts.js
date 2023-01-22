@@ -1,6 +1,6 @@
 import * as api from "../api";
 import {
-  FETCH_ALL,
+  FETCH_ALL_POSTS,
   FETCH_BY_SEARCH,
   CREATE,
   UPDATE,
@@ -12,7 +12,7 @@ export const getPosts = () => async (dispatch) => {
     const { data } = await api.fetchPosts();
     // payload is where we store all our posts
     // thunk allows us to specify additional arrow function
-    dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: FETCH_ALL_POSTS, payload: data });
   } catch (error) {
     console.log(error);
   }

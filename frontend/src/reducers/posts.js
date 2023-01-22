@@ -1,5 +1,5 @@
 import {
-  FETCH_ALL,
+  FETCH_ALL_POSTS,
   FETCH_BY_SEARCH,
   CREATE,
   UPDATE,
@@ -8,7 +8,7 @@ import {
 
 const posts = (posts = [], action) => {
   switch (action.type) {
-    case FETCH_ALL:
+    case FETCH_ALL_POSTS:
       return action.payload;
     case FETCH_BY_SEARCH:
       return action.payload;

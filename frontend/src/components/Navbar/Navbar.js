@@ -1,3 +1,4 @@
+import { React } from "react";
 import { Disclosure } from "@headlessui/react";
 import SearchBar from "./SearchBar";
 import navBarLogo from "./nav-bar-icon.png";
@@ -6,12 +7,12 @@ export default function Navbar({
   search,
   setSearch,
   handleSearchSubmit,
-  setShowForm,
+  setShowLogin,
   adminSignIn,
   setAdminSignIn,
 }) {
   const handleSignIn = () => {
-    setShowForm(true);
+    setShowLogin(true);
   };
 
   const handleLogOut = () => {
@@ -31,7 +32,7 @@ export default function Navbar({
                     <img
                       className="hidden lg:block h-10 w-auto"
                       src={navBarLogo}
-                      alt="TeamShare"
+                      alt="Sharing"
                     />
                   </a>
                 </div>

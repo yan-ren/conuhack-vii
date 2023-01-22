@@ -6,11 +6,12 @@ import Posts from "./components/Posts/Posts";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { getPosts, getPostsBySearch } from "./actions/posts";
+import { getReports } from "./actions/reports";
 import SignIn from "./components/SignIn/SignIn";
 
 function App() {
   const [search, setSearch] = useState("");
-  const [showForm, setShowForm] = useState(true);
+  const [showLogin, setShowLogin] = useState(true);
   const [adminSignIn, setAdminSignIn] = useState(false);
 
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ function App() {
   // as soon as currentId is updated (submit/clear form), the app is going to dispatch getPosts action
   useEffect(() => {
     dispatch(getPosts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getReports());
   }, [dispatch]);
 
   const handleSearchSubmit = (e) => {
@@ -36,18 +41,16 @@ function App() {
         search={search}
         setSearch={setSearch}
         handleSearchSubmit={handleSearchSubmit}
-        setShowForm={setShowForm}
+        setShowLogin={setShowLogin}
         adminSignIn={adminSignIn}
         setAdminSignIn={setAdminSignIn}
       />
 
-      {showForm ? (
+      {showLogin && (
         <SignIn
-          setShowForm={setShowForm}
+          setShowLogin={setShowLogin}
           setAdminSignIn={setAdminSignIn}
         ></SignIn>
-      ) : (
-        <></>
       )}
       <div className="container mx-auto pt-8">
         <div className="flex justify-center">

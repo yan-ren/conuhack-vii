@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { React, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 const ADMIN_EMAIL = "admin@test.com";
 const ADMIN_PASSWORD = "admin";
 
-export default function SignIn({ setAdminSignIn, setShowForm }) {
+export default function SignIn({ setAdminSignIn, setShowLogin }) {
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleSubmit = (e) => {
@@ -14,7 +14,7 @@ export default function SignIn({ setAdminSignIn, setShowForm }) {
     ) {
       setAdminSignIn(true);
     }
-    setShowForm(false);
+    setShowLogin(false);
   };
 
   return (
@@ -29,7 +29,7 @@ export default function SignIn({ setAdminSignIn, setShowForm }) {
             <button
               type="button"
               className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-              onClick={() => setShowForm(false)}
+              onClick={() => setShowLogin(false)}
             >
               <svg
                 className="w-5 h-5"
@@ -46,7 +46,7 @@ export default function SignIn({ setAdminSignIn, setShowForm }) {
             </button>
             <div className="py-6 px-6 lg:px-8">
               <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                Sign in to our platform
+                Sign in to as admin
               </h3>
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>

@@ -1,9 +1,32 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect, useMemo } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Post from "./Post";
 // eslint-disable-next-line no-unused-vars
 import { Masonry, Masonro } from "./Masonry/Mansonry";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { PolarArea, Bar } from "react-chartjs-2";
+
+ChartJS.register(
+  RadialLinearScale,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Loading = () => (
   <div>
@@ -28,21 +51,69 @@ const Loading = () => (
 
 // Set the current id
 const Posts = ({ setCurrentId, adminSignIn }) => {
+  // const [chartData, setChartData] = useState({});
   const posts = useSelector((state) => state.posts);
+  const reports = useSelector((state) => state.reports);
+
+  //
+  const chartData = {
+    labels: ["bad", "first", "great", "in-person", "role-playing", "welcome"],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [2, 4, 1, 11, 2, 8],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.5)",
+          "rgba(54, 162, 235, 0.5)",
+          "rgba(255, 206, 86, 0.5)",
+          "rgba(75, 192, 192, 0.5)",
+          "rgba(153, 102, 255, 0.5)",
+          "rgba(255, 159, 64, 0.5)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  //
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Onboarding Rating Summary",
+      },
+    },
+  };
+
+  const data = {
+    labels: ["1", "2", "3", "4", "5"],
+    datasets: [
+      {
+        label: "Rating",
+        data: [1, 6, 3, 5, 2],
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
 
   const { width } = useWindowDimensions();
   let nc = width >= 1024 ? 3 : 2;
 
-  const options = useMemo(
+  const masonryOptions = useMemo(
     () => ({
       columns: nc,
       margin: 4,
     }),
     [nc]
   );
+
   const PostsGrid = () => (
     <div className="mb-4 sm:mb-0 gap-3">
-      <Masonry options={options}>
+      <Masonry options={masonryOptions}>
         {posts.map((post) => (
           <div key={post._id}>
             <Post
@@ -58,6 +129,8 @@ const Posts = ({ setCurrentId, adminSignIn }) => {
 
   return (
     <div>
+      {adminSignIn && <PolarArea data={chartData} />}
+      {adminSignIn && <Bar options={options} data={data} />}
       <div className="text-2xl font-bold mb-4">Posts</div>
       {!posts.length ? <Loading /> : <PostsGrid />}
     </div>

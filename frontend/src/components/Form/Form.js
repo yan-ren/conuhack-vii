@@ -13,6 +13,7 @@ const Form = () => {
     message: "",
     tags: "",
     selectedFile: "",
+    points: 0,
   });
   const dispatch = useDispatch();
   const post = useSelector((state) => null);
@@ -32,7 +33,7 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost({ ...postData}));
+    dispatch(createPost({ ...postData }));
     setShowForm(false);
     clear();
   };
@@ -112,7 +113,7 @@ const Form = () => {
     <>
       <div className="w-full text-center">
         <div className="text-2xl font-bold flex justify-center mb-2">
-          Welcome to TeamShare!
+          Welcome to Sharing!
         </div>
         <div className="text-base flex justify-center mb-4">
           Share something with the team!
@@ -159,9 +160,7 @@ const Form = () => {
                   </svg>
                 </button>
                 <div className="py-6 px-6 lg:px-8">
-                  <div className="text-2xl font-bold">
-                    Creating a Post
-                  </div>
+                  <div className="text-2xl font-bold">Creating a Post</div>
                   <div className="mt-4 w-full">
                     <form
                       autoComplete="off"
@@ -238,6 +237,19 @@ const Form = () => {
                             className="hidden"
                           />
                         </aside>
+                      </label>
+                      <label className="block mb-6">
+                        <span>How do you rate your onboarding so far?</span>
+                        <input
+                          type="number"
+                          min="1"
+                          max="10"
+                          className={inputStyle}
+                          value={postData.points}
+                          onChange={(e) =>
+                            setPostData({ ...postData, points: e.target.value })
+                          }
+                        />
                       </label>
                       <label className="block mb-2">
                         <span className="sr-only">Submit Button</span>

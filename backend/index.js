@@ -17,7 +17,7 @@ app.use(cors());
 
 // localhost:3001/posts
 app.use("/posts", postRoutes);
-app.use("/report", reportRoutes);
+app.use("/reports", reportRoutes);
 
 const PORT = process.env.PORT || 3002;
 

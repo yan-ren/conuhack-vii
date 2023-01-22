@@ -20,7 +20,7 @@ node index.js
 #### Run Frontend server
 ```
 cd frontend
-npm install
+npm install --legacy-peer-deps
 npm start
 ```
 ## System diagram
