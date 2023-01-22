@@ -17,7 +17,7 @@ class Information:
         self.__review = []
         self.__contents = []
         self.__top_5_key_words = {}
-        self.__destination = self.__mydb["analyse"]
+        self.__destination = self.__mydb["dataanalyses"]
 
     def __get_review_points_list(self):
         if self.__collection:
@@ -45,10 +45,10 @@ class Information:
             self.__top_5_key_words = dict(counts.most_common(5))
 
     def __get_data(self):
-        # Use a breakpoint in the code line below to debug your script.
+        from statistics import mode
         mean = np.mean(self.__review)
         median = np.median(self.__review)
-        mode = np.mode(self.__review)
+        mode = mode(self.__review)
         return mean, median, mode
 
     def __get_portion(self):
@@ -63,7 +63,7 @@ class Information:
         self.__hot_key_word()
         output = {"mean": mean,
                   "mode": mode,
-                  "media": median,
+                  "median": median,
                   "counter": counter,
                   "top5": self.__top_5_key_words,
                   "timeStamp": self.__current
